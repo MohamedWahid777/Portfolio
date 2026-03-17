@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mohamed Wahid | Portfolio</title>
+    <meta
+      name="description"
+      content="Personal portfolio of Mohamed Wahid — Computer Science Student and Front-End Developer."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      // Prevent theme flash: apply saved theme early
+      (() => {
+        try {
+          const saved = localStorage.getItem("mw-theme");
+          const theme = saved === "light" || saved === "dark" ? saved : "dark"; // Default to dark theme on first visit
+          document.documentElement.classList.toggle("dark", theme === "dark");
+        } catch {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+
+    <script>
+      // Tailwind via CDN with dark-mode + theme tokens
+      tailwind = {
+        config: {
+          darkMode: "class",
+          theme: {
+            extend: {
+              fontFamily: { sans: ["Inter", "ui-sans-serif", "system-ui"] },
+              colors: {
+                ink: {
+                  900: "#0B1020",
+                  800: "#0E1630",
+                  700: "#13224A",
+                },
+                accent: {
+                  50: "#EEF2FF",
+                  100: "#E0E7FF",
+                  200: "#C7D2FE",
+                  300: "#A5B4FC",
+                  400: "#818CF8",
+                  500: "#6366F1",
+                  600: "#4F46E5",
+                },
+              },
+              boxShadow: {
+                soft: "0 10px 30px rgba(2, 8, 23, 0.12)",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="./src/main.js" defer></script>
+  </head>
+
+  <body
+    class="min-h-screen bg-[var(--bg)] text-[var(--text)] antialiased selection:bg-accent-500/40 selection:text-white"
+  >
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-xl focus:bg-white focus:px-4 focus:py-2 focus:text-slate-900 focus:shadow-soft dark:focus:bg-ink-800 dark:focus:text-slate-100"
+      >Skip to content</a
+    >
+
+    <!-- Ambient background -->
+    <div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-10">
+      <div
+        class="absolute -top-32 left-1/2 h-[540px] w-[540px] -translate-x-1/2 rounded-full bg-gradient-to-br from-[#6366F1]/35 via-[#22D3EE]/20 to-transparent blur-3xl"
+      ></div>
+      <div
+        class="absolute -bottom-40 right-[-160px] h-[620px] w-[620px] rounded-full bg-gradient-to-tr from-[#0EA5E9]/28 via-[#6366F1]/18 to-transparent blur-3xl"
+      ></div>
+      <div
+        class="absolute left-[-120px] top-1/3 h-[420px] w-[420px] rounded-full bg-gradient-to-tr from-[#1E293B]/80 via-transparent to-transparent blur-3xl"
+      ></div>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 border-b border-white/10 backdrop-blur">
+      <div
+        class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6"
+      >
+        <div class="flex items-center">
+          <div class="logo">
+            <img
+              src="/src/Screenshot 2025-09-25 163725.png"
+              alt="Mohamed Wahed Logo"
+              class="h-8 w-auto md:h-10 transition-transform hover:scale-105"
+            />
+          </div>
+        </div>
+        <nav class="hidden items-center gap-1 md:flex" aria-label="Primary">
+          <a class="nav-link" href="#home">Home</a>
+          <a class="nav-link" href="#about">About</a>
+          <a class="nav-link" href="#skills">Skills</a>
+          <a class="nav-link" href="#projects">Projects</a>
+          <a class="nav-link" href="#contact">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <button
+            id="themeToggle"
+            type="button"
+            class="btn-ghost"
+            aria-label="Toggle dark mode"
+            title="Toggle dark mode"
+          >
+            <span class="inline-flex items-center gap-2">
+              <i data-lucide="moon" class="h-5 w-5"></i>
+              <span class="hidden sm:inline">Theme</span>
+            </span>
+          </button>
+
+          <button
+            id="mobileMenuBtn"
+            type="button"
+            class="btn-ghost md:hidden"
+            aria-controls="mobileMenu"
+            aria-expanded="false"
+            aria-label="Open menu"
+            title="Open menu"
+          >
+            <i data-lucide="menu" class="h-5 w-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="mobileMenu"
+        class="hidden border-t border-white/10 bg-white/70 backdrop-blur dark:bg-white/5 md:hidden"
+      >
+        <nav class="mx-auto max-w-6xl px-4 py-3" aria-label="Mobile">
+          <div class="grid gap-1">
+            <a class="nav-link" href="#home">Home</a>
+            <a class="nav-link" href="#about">About</a>
+            <a class="nav-link" href="#skills">Skills</a>
+            <a class="nav-link" href="#projects">Projects</a>
+            <a class="nav-link" href="#contact">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- Hero -->
+      <section id="home" class="mx-auto max-w-6xl px-4 pt-16 md:px-6">
+        <div class="grid items-center gap-12 md:grid-cols-2">
+          <div class="order-2 md:order-1 reveal">
+            <h1
+              class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl"
+            >
+              Mohamed Wahid Mohamed
+            </h1>
+            <p class="mt-4 text-lg text-slate-200">
+              <span class="font-semibold text-white"
+                >Computer Science Student</span
+              >
+              <span class="text-slate-500">|</span>
+              <span
+                class="typing-text font-semibold text-accent-400"
+                data-text="Front-End Developer"
+              ></span>
+            </p>
+            <p class="mt-5 max-w-xl text-slate-300">
+              Passionate Computer Science student focused on Front-End Web
+              Development. I enjoy building clean, responsive, and user-friendly
+              web interfaces.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a class="btn-primary hover-lift" href="#projects">
+                <span>View Projects</span>
+                <i data-lucide="arrow-right" class="h-5 w-5"></i>
+              </a>
+              <a class="btn-secondary hover-lift" href="#contact">
+                <i data-lucide="mail" class="h-5 w-5"></i>
+                <span>Contact Me</span>
+              </a>
+            </div>
+
+            <div
+              class="mt-9 flex flex-wrap items-center gap-4 text-sm text-slate-400"
+            >
+              <span class="inline-flex items-center gap-2">
+                <i data-lucide="map-pin" class="h-4 w-4"></i>
+                Egypt (remote-friendly)
+              </span>
+              <span class="inline-flex items-center gap-2">
+                <i data-lucide="sparkles" class="h-4 w-4"></i>
+                Minimal, smooth UI
+              </span>
+            </div>
+          </div>
+
+          <div class="order-1 md:order-2 reveal">
+            <div class="hero-media mx-auto max-w-xs md:max-w-sm lg:max-w-md">
+              <div class="avatar-shell">
+                <div class="avatar-orbit"></div>
+                <div class="avatar-inner">
+                  <img
+                    src="/src/IMG-20251206-WA0051~2.jpg"
+                    alt="Portrait of Mohamed Wahed"
+                    class="avatar-image w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+              <div class="hero-pill">
+                <div class="flex items-center justify-between gap-4">
+                  <div>
+                    <p
+                      class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400"
+                    >
+                      Junior Front‑End Focus
+                    </p>
+                    <p class="mt-1 text-sm text-slate-300 leading-relaxed">
+                      Crafting clean, responsive, developer‑friendly
+                      experiences.
+                    </p>
+                  </div>
+                  <div
+                    class="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-[#6366F1] to-[#22C55E] text-white shadow-[0_0_25px_rgba(56,189,248,0.35)] transition-transform hover:scale-110"
+                  >
+                    <i data-lucide="code-2" class="h-5 w-5"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="about" class="mx-auto mt-20 max-w-6xl px-4 md:px-6">
+        <div class="section-card reveal">
+          <div class="grid gap-10 md:grid-cols-2 md:items-center">
+            <div class="order-2 md:order-1">
+              <h2 class="section-title">About Me</h2>
+              <p class="mt-4 text-[var(--muted)]">
+                I’m
+                <span class="font-semibold text-[var(--text)]"
+                  >Mohamed Wahid Mohamed</span
+                >, a passionate Computer Science student with a strong focus on
+                modern Front-End Development. I specialize in crafting clean,
+                responsive, and user-friendly web interfaces that combine
+                aesthetic appeal with exceptional functionality.
+              </p>
+              <p class="mt-4 text-[var(--muted)]">
+                With a keen eye for detail and a deep commitment to quality, I
+                transform ideas into polished digital experiences. My expertise
+                spans HTML, CSS, JavaScript, and modern frameworks, allowing me
+                to build websites that not only look stunning but also perform
+                flawlessly across all devices and platforms.
+              </p>
+              <div class="expandable-content">
+                <p
+                  class="mt-4 text-[var(--muted)] expandable-text"
+                  id="aboutExpandableText"
+                >
+                  I'm constantly expanding my skill set and staying current with
+                  industry trends. Whether it's implementing smooth animations,
+                  optimizing performance, or ensuring accessibility, I approach
+                  every project with enthusiasm and a dedication to excellence.
+                  I believe great web development is both an art and a
+                  science—and I'm passionate about mastering both.
+                </p>
+                <button
+                  class="read-more-btn mt-4"
+                  onclick="toggleAboutText()"
+                  id="readMoreBtn"
+                >
+                  <span id="readMoreText">Read More</span>
+                  <i
+                    data-lucide="chevron-down"
+                    class="h-4 w-4 transition-transform"
+                    id="readMoreIcon"
+                  ></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="order-1 flex items-center justify-center md:order-2">
+              <div class="about-media">
+                <div class="avatar-shell2">
+                  <div class="avatar-orbit2"></div>
+                  <div class="avatar-inner">
+                    <img
+                      src="/src/IMG-20251206-WA0051~2.jpg"
+                      alt="Portrait of Mohamed Wahed"
+                      class="avatar-image w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills" class="mx-auto mt-20 max-w-6xl px-4 md:px-6">
+        <div class="reveal">
+          <div class="text-center mb-12">
+            <h2 class="section-title text-center mb-4 mx-auto max-w-2xl">
+              Skills
+            </h2>
+            <p class="mt-2 text-slate-400 max-w-2xl mx-auto text-center">
+              A comprehensive toolkit for modern Front-End development and
+              more..
+            </p>
+          </div>
+
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div class="skill-card-modern group">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="p-2 rounded-lg bg-slate-800/50 group-hover:bg-slate-700/50 transition-colors"
+                  >
+                    <i
+                      data-lucide="terminal"
+                      class="h-5 w-5 text-indigo-400"
+                    ></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white">C++</h4>
+                    <p class="text-xs text-slate-400">System Programming</p>
+                  </div>
+                </div>
+                <span class="text-sm font-medium text-indigo-400">85%</span>
+              </div>
+              <div class="progress" data-level="85"></div>
+            </div>
+
+            <div class="skill-card-modern group">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="p-2 rounded-lg bg-slate-800/50 group-hover:bg-slate-700/50 transition-colors"
+                  >
+                    <i data-lucide="layout" class="h-5 w-5 text-orange-400"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white">HTML</h4>
+                    <p class="text-xs text-slate-400">Markup & Structure</p>
+                  </div>
+                </div>
+                <span class="text-sm font-medium text-orange-400">95%</span>
+              </div>
+              <div class="progress" data-level="95"></div>
+            </div>
+
+            <div class="skill-card-modern group">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="p-2 rounded-lg bg-slate-800/50 group-hover:bg-slate-700/50 transition-colors"
+                  >
+                    <i data-lucide="palette" class="h-5 w-5 text-blue-400"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white">CSS</h4>
+                    <p class="text-xs text-slate-400">Styling & Design</p>
+                  </div>
+                </div>
+                <span class="text-sm font-medium text-blue-400">90%</span>
+              </div>
+              <div class="progress" data-level="90"></div>
+            </div>
+
+            <div class="skill-card-modern group">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="p-2 rounded-lg bg-slate-800/50 group-hover:bg-slate-700/50 transition-colors"
+                  >
+                    <i data-lucide="braces" class="h-5 w-5 text-yellow-400"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white">JavaScript</h4>
+                    <p class="text-xs text-slate-400">Web Interactivity</p>
+                  </div>
+                </div>
+                <span class="text-sm font-medium text-yellow-400">80%</span>
+              </div>
+              <div class="progress" data-level="80"></div>
+            </div>
+
+            <div class="skill-card-modern group">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="p-2 rounded-lg bg-slate-800/50 group-hover:bg-slate-700/50 transition-colors"
+                  >
+                    <i
+                      data-lucide="activity"
+                      class="h-5 w-5 text-green-400"
+                    ></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white">Python</h4>
+                    <p class="text-xs text-slate-400">Data & Automation</p>
+                  </div>
+                </div>
+                <span class="text-sm font-medium text-green-400">64%</span>
+              </div>
+              <div class="progress" data-level="64"></div>
+            </div>
+
+            <div class="skill-card-modern group">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="p-2 rounded-lg bg-slate-800/50 group-hover:bg-slate-700/50 transition-colors"
+                  >
+                    <i
+                      data-lucide="git-branch"
+                      class="h-5 w-5 text-purple-400"
+                    ></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white">Git & GitHub</h4>
+                    <p class="text-xs text-slate-400">Version Control</p>
+                  </div>
+                </div>
+                <span class="text-sm font-medium text-purple-400">66%</span>
+              </div>
+              <div class="progress" data-level="66"></div>
+            </div>
+
+            <div class="skill-card-modern group">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="p-2 rounded-lg bg-slate-800/50 group-hover:bg-slate-700/50 transition-colors"
+                  >
+                    <i
+                      data-lucide="lightbulb"
+                      class="h-5 w-5 text-amber-400"
+                    ></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white">Problem Solving</h4>
+                    <p class="text-xs text-slate-400">Critical Thinking</p>
+                  </div>
+                </div>
+                <span class="text-sm font-medium text-amber-400">74%</span>
+              </div>
+              <div class="progress" data-level="74"></div>
+            </div>
+
+            <div class="skill-card-modern group">
+              <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="p-2 rounded-lg bg-slate-800/50 group-hover:bg-slate-700/50 transition-colors"
+                  >
+                    <i data-lucide="cpu" class="h-5 w-5 text-cyan-400"></i>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-white">Basic Algorithms</h4>
+                    <p class="text-xs text-slate-400">Data Structures</p>
+                  </div>
+                </div>
+                <span class="text-sm font-medium text-cyan-400">64%</span>
+              </div>
+              <div class="progress" data-level="64"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Projects -->
+      <section id="projects" class="mx-auto mt-16 max-w-6xl px-4 md:px-6">
+        <div class="reveal">
+          <div class="text-center mb-12">
+            <h2 class="section-title text-center mb-4">Projects</h2>
+            <p class="mt-2 max-w-2xl text-[var(--muted)] mx-auto text-center">
+              A few sample projects that reflect what I'm practicing right now.
+            </p>
+          </div>
+
+          <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <article class="project-card">
+              <div class="project-head">
+                <h3 class="text-lg font-semibold">Gym Website</h3>
+                <span class="chip">HTML &amp; CSS &amp; JS</span>
+              </div>
+              <p class="mt-3 text-sm text-[var(--muted)]">
+                A modern and responsive gym landing page designed with a clean
+                UI/UX. The website supports both English and Arabic with smooth
+                language switching (LTR/RTL), includes services, pricing plans,
+                trainers section, and a contact form with email integration
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">JS</span>
+                <span class="tag">Responsive</span>
+              </div>
+              <div class="mt-5 flex gap-2">
+                <a
+                  class="btn-ghost w-full justify-center"
+                  href="https://github.com/MohamedWahid777/gem-website.git"
+                  target="_blank"
+                  aria-label="GitHub repository"
+                >
+                  <i data-lucide="github" class="h-5 w-5"></i>
+                  <span>GitHub</span>
+                </a>
+                <a
+                  target="_blank"
+                  class="btn-secondary w-full justify-center"
+                  href="https://gymwibsitironcore.netlify.app/"
+                  aria-label="Live demo"
+                >
+                  <i data-lucide="external-link" class="h-5 w-5"></i>
+                  <span>Live</span>
+                </a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-head">
+                <h3 class="text-lg font-semibold">Elzero Template</h3>
+                <span class="chip">HTML &amp; CSS</span>
+              </div>
+              <p class="mt-3 text-sm text-[var(--muted)]">
+                Front-end training project inspired by Elzero Web School. Built
+                with HTML & CSS to improve layout structure and responsive
+                design skills. Contains mock content for practice
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">Responsive</span>
+              </div>
+              <div class="mt-5 flex gap-2">
+                <a
+                  class="btn-ghost w-full justify-center"
+                  href="#"
+                  aria-label="GitHub repository"
+                >
+                  <i data-lucide="github" class="h-5 w-5"></i>
+                  <span>GitHub</span>
+                </a>
+                <a
+                  target="_blank"
+                  class="btn-secondary w-full justify-center"
+                  href="https://fabulous-sprite-22bef8.netlify.app/"
+                  aria-label="Live demo"
+                >
+                  <i data-lucide="external-link" class="h-5 w-5"></i>
+                  <span>Live</span>
+                </a>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <div class="project-head">
+                <h3 class="text-lg font-semibold">Landing Page</h3>
+                <span class="chip">HTML &amp; CSS &amp; JS</span>
+              </div>
+              <p class="mt-3 text-sm text-[var(--muted)]">
+                Modern responsive landing page for a sports smart watch using
+                HTML, CSS, and JavaScript, featuring Dark/Light mode, mobile
+                menu, demo video popup, order form, FAQ accordion, and
+                performance optimizations.
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">JS</span>
+              </div>
+              <div class="mt-5 flex gap-2">
+                <a
+                  class="btn-ghost w-full justify-center"
+                  href="#"
+                  aria-label="GitHub repository"
+                >
+                  <i data-lucide="github" class="h-5 w-5"></i>
+                  <span>GitHub</span>
+                </a>
+                <a
+                  target="_blank"
+                  class="btn-secondary w-full justify-center"
+                  href="https://serene-vacherin-8cb202.netlify.app/"
+                  aria-label="Live demo"
+                >
+                  <i data-lucide="external-link" class="h-5 w-5"></i>
+                  <span>Live</span>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="mx-auto mt-16 max-w-6xl px-4 pb-16 md:px-6">
+        <div class="section-card reveal">
+          <div class="grid gap-10 md:grid-cols-2 md:items-start">
+            <div>
+              <h2 class="section-title">Contact</h2>
+              <p class="mt-2 text-[var(--muted)]">
+                Want to collaborate, give feedback, or share an opportunity?
+                Send a message.
+              </p>
+
+              <div class="mt-6 grid gap-3">
+                <!-- <a class="social" href="#" aria-label="GitHub profile">
+                  <i data-lucide="github" class="h-5 w-5"></i>
+                  <span>GitHub</span>
+                </a> -->
+                <a
+                  class="social"
+                  href="https://www.linkedin.com/in/mohamed-wahed-5a045a36a/?trk=public_profile-settings_edit-profile-content/"
+                  aria-label="LinkedIn profile"
+                  target="_blank"
+                >
+                  <i data-lucide="linkedin" class="h-5 w-5"></i>
+                  <span>LinkedIn</span>
+                </a>
+
+                <a
+                  target="_blank"
+                  class="social"
+                  href="https://www.facebook.com/mohamed.wahed.185508/"
+                  aria-label="Facebook profile"
+                >
+                  <i data-lucide="facebook" class="h-5 w-5"></i>
+                  <span>Facebook</span>
+                </a>
+                <a
+                  class="social"
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=wahadmomo@gmail.com"
+                  target="_blank"
+                >
+                  <i class="fa-solid fa-envelope"></i>
+                  <span>Gmail</span>
+                </a>
+                <a
+                  class="social"
+                  href="https://wa.me/201063841779"
+                  target="_blank"
+                >
+                  <i class="fa-brands fa-whatsapp"></i>
+                  <span>WhatsApp</span>
+                </a>
+              </div>
+            </div>
+
+            <form id="contactForm" class="grid gap-3">
+              <label class="field">
+                <span class="field-label">Name</span>
+                <input
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="Your name"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span class="field-label">Email</span>
+                <input
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="you@example.com"
+                  required
+                />
+              </label>
+
+              <label class="field">
+                <span class="field-label">Message</span>
+                <textarea
+                  name="message"
+                  rows="5"
+                  placeholder="Write your message..."
+                  required
+                ></textarea>
+              </label>
+
+              <button class="btn-primary justify-center" type="submit">
+                <span>Send Message</span>
+                <i data-lucide="send" class="h-5 w-5"></i>
+              </button>
+
+              <p
+                id="formNote"
+                class="hidden text-sm text-[var(--muted)]"
+                role="status"
+                aria-live="polite"
+              ></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-white/10">
+      <div class="mx-auto max-w-6xl px-4 py-8 md:px-6">
+        <div
+          class="flex flex-col items-center justify-between gap-3 text-sm text-[var(--muted)] sm:flex-row"
+        >
+          <p>© 2026 Mohamed Wahid. All rights reserved.</p>
+          <button class="btTOP">
+            <i class="fa-solid fa-arrow-up"></i>
+          </button>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
