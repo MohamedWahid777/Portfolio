@@ -199,6 +199,7 @@ Update `src/main.js` to:
 - **LinkedIn:** [Mohamed Wahed](https://www.linkedin.com/in/mohamed-wahed-5a045a36a/)
 - **Email:** wahadmomo@gmail.com
 - **WhatsApp:** +20 106 384 1779
+- **GitHub:** [Mohamed Wahed](https://github.com/MohamedWahid777)
 - **Facebook:** [Mohamed Wahed](https://www.facebook.com/mohamed.wahed.185508/)
 
 ## 📄 License
